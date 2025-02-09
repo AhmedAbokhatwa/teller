@@ -4,6 +4,8 @@ import frappe
 class CustomCustomer(Customer):
   def validate(self):
       formatted_date = datetime.now().strftime('%Y-%m-%d')
+      if self.custom_end_registration_date:
+         frappe.msgprint(f"\n\n\n{self.custom_end_registration_date}" )
       if self.custom_end_registration_date == formatted_date:   
           frappe.msgprint("Date is Expired")
           self.custom_is_expired = 1
